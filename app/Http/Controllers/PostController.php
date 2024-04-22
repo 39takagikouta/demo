@@ -34,7 +34,14 @@ class PostController extends Controller
     {
         $post = new Post;
         $post->user_id = Auth::id(); 
-        $post -> fill($request->all())->save();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->user_id = Auth::id(); 
+        if (request()->hasFile('image')) {
+            $filename = request()->file('image')->store('public');
+            $post->image = basename($filename);
+        }
+        $post ->save();
         return redirect(route('posts.index'))->with('success', '掲示板を投稿しました');
     }
 

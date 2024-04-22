@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('posts.store') }}">
+        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
 
         <div class="mb-10">
@@ -26,6 +26,13 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="5" cols="33" name="description">{{ old('description') }}
             </textarea>    
+        </div>
+
+        <div class="mb-10">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+            掲示板画像
+          </label>
+          <input id="image" class="w-full leading-tight" type="file" name="image">
         </div>
 
         <div class="flex justify-end">
